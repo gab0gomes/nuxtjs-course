@@ -9,20 +9,30 @@
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
-      <post-list :isAdmin="true" />
+      <post-list
+        :isAdmin="true"
+        :posts="loadedPosts"
+      />
     </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import PostList from '@/components/Posts/PostList'
 import AppButton from '@/components/UI/AppButton'
+
 export default {
   layout: 'admin',
 
   components: {
     PostList,
     AppButton
+  },
+  computed: {
+    ...mapState([
+      'loadedPosts'
+    ])
   }
 }
 </script>

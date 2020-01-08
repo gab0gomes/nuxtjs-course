@@ -13,7 +13,7 @@
           Title
         </app-control-input>
         <app-control-input
-          v-model="editedPost.thumbnailLink"
+          v-model="editedPost.thumbnail"
         >
           Thumbnail Link
         </app-control-input>
@@ -22,6 +22,12 @@
           control-type="textarea"
         >
           Content
+        </app-control-input>
+        <app-control-input
+          v-model="editedPost.previewText"
+          control-type="textarea"
+        >
+          Preview Text
         </app-control-input>
         <app-button
           type="submit"
@@ -64,14 +70,15 @@ export default {
         : {
           author: '',
           title: '',
-          thumbnailLink: '',
-          content: ''
+          thumbnail: '',
+          content: '',
+          previewText: ''
         }
     }
   },
   methods: {
     onSave () {
-
+      this.$emit('submit', this.editedPost)
     },
     onCancel () {
       this.$router.push('/admin')

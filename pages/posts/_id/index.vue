@@ -25,19 +25,19 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  asyncData (context, callback) {
-    callback(null, {
-      loadedPost: {
-        id: '1',
-        title: `Opas (ID: ${context.route.params.id})`,
-        previewText: 'Super amazing',
-        author: 'Gabriel',
-        updatedDate: new Date(),
-        content: 'testing',
-        thumbnail: 'http://prod-upp-image-read.ft.com/7c363102-ce47-11e9-b018-ca4456540ea6'
+  asyncData (context) {
+    return axios.get(
+      'https://nuxt-course-e1377.firebaseio.com/posts/' +
+      context.params.id +
+      '.json'
+    ).then((res) => {
+      return {
+        loadedPost: res.data
       }
-    })
+    }).catch(e => context.error(e))
   }
 }
 </script>
