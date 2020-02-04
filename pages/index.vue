@@ -11,12 +11,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import PostList from '@/components/Posts/PostList'
 
 export default {
-  components: {
-    PostList
-  },
   computed: {
     ...mapState([
       'loadedPosts'

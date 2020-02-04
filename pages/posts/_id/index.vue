@@ -6,7 +6,7 @@
       </h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on {{ loadedPost.updatedDate }}
+          Last updated on {{ loadedPost.updatedDate | date }}
         </div>
         <div class="post-detail">
           Written by {{ loadedPost.author }}
@@ -25,17 +25,15 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   asyncData (context) {
-    return axios.get(
-      'https://nuxt-course-e1377.firebaseio.com/posts/' +
+    return context.app.$axios.$get(
+      '/posts/' +
       context.params.id +
       '.json'
-    ).then((res) => {
+    ).then((data) => {
       return {
-        loadedPost: res.data
+        loadedPost: data
       }
     }).catch(e => context.error(e))
   }
