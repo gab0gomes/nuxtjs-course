@@ -22,7 +22,7 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'admin',
-
+  middleware: 'auth',
   computed: {
     ...mapState([
       'loadedPosts'
