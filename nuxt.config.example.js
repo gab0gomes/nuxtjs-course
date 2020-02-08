@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser'
 
 export default {
   mode: 'universal',
@@ -71,5 +72,9 @@ export default {
   },
   router: {
     middleware: 'log'
-  }
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    '~/api'
+  ]
 }
