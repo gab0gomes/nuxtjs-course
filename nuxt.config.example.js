@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser'
+import axios from 'axios'
 
 export default {
   mode: 'universal',
@@ -76,5 +77,23 @@ export default {
   serverMiddleware: [
     bodyParser.json(),
     '~/api'
-  ]
+  ],
+  generate: {
+    routes: () => {
+      return axios
+        .get('<your url>')
+        .then(({ data }) => {
+          const routes = []
+
+          for (const key in data) {
+            routes.push({
+              route: '/posts/' + key,
+              payload: { postData: data[key] }
+            })
+          }
+
+          return routes
+        })
+    }
+  }
 }

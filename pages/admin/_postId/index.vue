@@ -21,6 +21,12 @@ export default {
     AdminPostForm
   },
   asyncData (context) {
+    if (context.payload) {
+      return {
+        loadedPost: context.payload.postData
+      }
+    }
+
     return context.app.$axios.$get(
       '/posts/' +
       context.params.postId +
